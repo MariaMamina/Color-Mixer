@@ -24,22 +24,15 @@ class ViewController: UIViewController {
         colorView.layer.cornerRadius = 15
     }
 
-    @IBAction func redColorAction() {
+    
+    @IBAction func ColorAction() {
         redColorNumber.text = String(format: "%.2f", redSlider.value)
-        updateColor()
-    }
-    
-    @IBAction func greenSliderAction(){
         greenColorNumber.text = String(format: "%.2f", greenSlider.value)
-        updateColor()
-    }
-    
-    @IBAction func blueColorAction() {
         blueColorNumber.text = String(format: "%.2f", blueSlider.value)
         updateColor()
     }
     
-    func updateColor() {
+    private func updateColor() {
         let red = CGFloat(redSlider.value)
         let green = CGFloat(greenSlider.value)
         let blue = CGFloat(blueSlider.value)

@@ -64,6 +64,7 @@
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LeO-db-C6E">
                                 <rect key="frame" x="16" y="30" width="382" height="242"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="LYG-6j-oJH">
                                 <rect key="frame" x="128" y="290" width="270" height="130"/>
@@ -72,21 +73,21 @@
                                         <rect key="frame" x="-2" y="0.0" width="274" height="31"/>
                                         <color key="minimumTrackTintColor" systemColor="systemRedColor"/>
                                         <connections>
-                                            <action selector="redColorAction" destination="BYZ-38-t0r" eventType="valueChanged" id="jaN-85-Ikm"/>
+                                            <action selector="ColorAction" destination="BYZ-38-t0r" eventType="valueChanged" id="jaN-85-Ikm"/>
                                         </connections>
                                     </slider>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="e75-xj-iJ5">
                                         <rect key="frame" x="-2" y="50" width="274" height="31"/>
                                         <color key="minimumTrackTintColor" systemColor="systemGreenColor"/>
                                         <connections>
-                                            <action selector="greenSliderAction" destination="BYZ-38-t0r" eventType="valueChanged" id="Grn-QT-VeD"/>
+                                            <action selector="ColorAction" destination="BYZ-38-t0r" eventType="valueChanged" id="fq9-jJ-aTX"/>
                                         </connections>
                                     </slider>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="93f-gR-mx4">
                                         <rect key="frame" x="-2" y="100" width="274" height="31"/>
                                         <color key="minimumTrackTintColor" systemColor="systemBlueColor"/>
                                         <connections>
-                                            <action selector="blueColorAction" destination="BYZ-38-t0r" eventType="valueChanged" id="vsY-Io-Jt9"/>
+                                            <action selector="ColorAction" destination="BYZ-38-t0r" eventType="valueChanged" id="xlw-Hh-OZb"/>
                                         </connections>
                                     </slider>
                                 </subviews>
