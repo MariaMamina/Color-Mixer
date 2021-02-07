@@ -29,17 +29,22 @@ class ViewController: UIViewController {
         redColorNumber.text = String(format: "%.2f", redSlider.value)
         greenColorNumber.text = String(format: "%.2f", greenSlider.value)
         blueColorNumber.text = String(format: "%.2f", blueSlider.value)
-        updateColor()
+        
+        colorView.backgroundColor = UIColor(red: CGFloat(redSlider.value),
+                                            green: CGFloat(greenSlider.value),
+                                            blue: CGFloat(blueSlider.value),
+                                            alpha: 1)
+//        updateColor()
     }
     
-    private func updateColor() {
-        let red = CGFloat(redSlider.value)
-        let green = CGFloat(greenSlider.value)
-        let blue = CGFloat(blueSlider.value)
-        
-        let color = UIColor(red: red, green: green, blue: blue, alpha: 1)
-        colorView.backgroundColor = color
-    }
+//    private func updateColor() {
+//        let red = CGFloat(redSlider.value)
+//        let green = CGFloat(greenSlider.value)
+//        let blue = CGFloat(blueSlider.value)
+//
+//        let color = UIColor(red: red, green: green, blue: blue, alpha: 1)
+//        colorView.backgroundColor = color
+//    }
     
 }
 
