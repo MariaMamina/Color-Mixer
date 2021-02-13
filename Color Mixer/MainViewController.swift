@@ -12,7 +12,7 @@ protocol SettingViewControllerDelegate {
 }
 
 class MainViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 }
@@ -20,7 +20,8 @@ class MainViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let SettingVC = segue.destination as? SettingViewController else { return }
         SettingVC.delegate = self
-       // SettingVC.redSlider.value = 
+        SettingVC.color = view.backgroundColor
+        
     }
 }
 extension MainViewController: SettingViewControllerDelegate {

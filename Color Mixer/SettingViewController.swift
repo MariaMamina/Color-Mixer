@@ -25,6 +25,8 @@ class SettingViewController: UIViewController {
     
     
     var delegate: SettingViewControllerDelegate!
+    var color: UIColor!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,13 +37,22 @@ class SettingViewController: UIViewController {
         
         colorView.layer.cornerRadius = 15
 
+        guard let color = self.color else { return }
+        
+        redSlider.value = Float(color.rgba.red)
+        greenSlider.value = Float(color.rgba.green)
+        blueSlider.value = Float(color.rgba.blue)
+        
         setColor()
+        
         setLabelValue(for: redColorNumberLabel,
                  greenColorNumberLabel,
                  blueColorNumberLabel)
+        
         setValueTextField(for: redTextField,
                           greenTextField,
                           blueTextField)
+        setupToolbar()
     }
 
     @IBAction func colorAction(_ sender: UISlider) {
@@ -63,9 +74,34 @@ class SettingViewController: UIViewController {
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
         delegate.setNewColorValues(redColor: redSlider.value, greenColor: greenSlider.value, blueColor: blueSlider.value)
+        
         dismiss(animated: true)
         
     }
+    private func setupToolbar(){
+        //Create a toolbar
+        let bar = UIToolbar()
+        
+        //Create a done button with an action to trigger our function to dismiss the keyboard
+        let doneBtn = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissMyKeyboard))
+        
+
+        
+        //Create a felxible space item so that we can add it around in toolbar to position our done button
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        //Add the created button items in the toobar
+        bar.items = [flexSpace, flexSpace, doneBtn]
+        bar.sizeToFit()
+        
+        //Add the toolbar to our textfield
+        redTextField.inputAccessoryView = bar
+        greenTextField.inputAccessoryView = bar
+        blueTextField.inputAccessoryView = bar
+    }
+    @objc func dismissMyKeyboard(){
+            view.endEditing(true)
+        }
     
     private func setColor(){
         colorView.backgroundColor = UIColor(red: CGFloat(redSlider.value),
@@ -109,6 +145,18 @@ class SettingViewController: UIViewController {
         }
     }
 }
+extension UIColor {
+    var rgba: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+        
+        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+
+        return (red, green, blue, alpha)
+    }
+}
 
 extension SettingViewController: UITextFieldDelegate{
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -127,6 +175,9 @@ extension SettingViewController: UITextFieldDelegate{
         default:
             break
         }
+        setColor()
     }
-    }
+    
+    
+}
 
