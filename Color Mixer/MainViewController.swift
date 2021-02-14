@@ -31,6 +31,4 @@ extension MainViewController: SettingViewControllerDelegate {
                                        blue: CGFloat(blueColor),
                                        alpha: 1)
     }
-    
-    
 }

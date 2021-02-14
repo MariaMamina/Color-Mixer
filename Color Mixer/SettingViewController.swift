@@ -46,12 +46,13 @@ class SettingViewController: UIViewController {
         setColor()
         
         setLabelValue(for: redColorNumberLabel,
-                 greenColorNumberLabel,
-                 blueColorNumberLabel)
+                      greenColorNumberLabel,
+                      blueColorNumberLabel)
         
         setValueTextField(for: redTextField,
                           greenTextField,
                           blueTextField)
+        
         setupToolbar()
     }
 
@@ -78,30 +79,6 @@ class SettingViewController: UIViewController {
         dismiss(animated: true)
         
     }
-    private func setupToolbar(){
-        //Create a toolbar
-        let bar = UIToolbar()
-        
-        //Create a done button with an action to trigger our function to dismiss the keyboard
-        let doneBtn = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissMyKeyboard))
-        
-
-        
-        //Create a felxible space item so that we can add it around in toolbar to position our done button
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        
-        //Add the created button items in the toobar
-        bar.items = [flexSpace, flexSpace, doneBtn]
-        bar.sizeToFit()
-        
-        //Add the toolbar to our textfield
-        redTextField.inputAccessoryView = bar
-        greenTextField.inputAccessoryView = bar
-        blueTextField.inputAccessoryView = bar
-    }
-    @objc func dismissMyKeyboard(){
-            view.endEditing(true)
-        }
     
     private func setColor(){
         colorView.backgroundColor = UIColor(red: CGFloat(redSlider.value),
@@ -130,6 +107,22 @@ class SettingViewController: UIViewController {
         }
     }
     
+    private func setupToolbar(){
+        let bar = UIToolbar()
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissMyKeyboard))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        bar.items = [flexSpace, flexSpace, doneButton]
+        bar.sizeToFit()
+        
+        redTextField.inputAccessoryView = bar
+        greenTextField.inputAccessoryView = bar
+        blueTextField.inputAccessoryView = bar
+    }
+    @objc func dismissMyKeyboard(){
+            view.endEditing(true)
+        }
+    
     private func setValueTextField(for textField:UITextField...){
         textField.forEach {textField in
             switch textField.tag {
@@ -145,6 +138,7 @@ class SettingViewController: UIViewController {
         }
     }
 }
+
 extension UIColor {
     var rgba: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
         var red: CGFloat = 0
@@ -159,9 +153,24 @@ extension UIColor {
 }
 
 extension SettingViewController: UITextFieldDelegate{
+    override func touchesBegan(_ touches: Set<UITouch>,
+                               with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let newColorValue = textField.text else { return }
-        guard let newColorNumberValue = Float(newColorValue) else { return }
+        guard let newColorNumberValue = Float(newColorValue),
+              newColorNumberValue >= 0,
+              newColorNumberValue <= 1
+              else {
+            showAlert(with: "Incorrect color value",
+                      and: "Please, enter corect color value. Right format 0.00. The value must be greater than 0 and less than 1")
+            setValueTextField(for: textField)
+            return
+        }
+        
         switch textField.tag {
         case 0:
             redSlider.value = newColorNumberValue
@@ -176,6 +185,13 @@ extension SettingViewController: UITextFieldDelegate{
             break
         }
         setColor()
+    }
+    
+    private func showAlert(with title: String, and message: String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAlert = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAlert)
+        present(alert, animated: true)
     }
     
     

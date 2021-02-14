@@ -39,7 +39,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="ICw-KP-Cvd">
-                                <rect key="frame" x="16" y="188" width="288" height="122"/>
+                                <rect key="frame" x="16" y="128" width="288" height="122"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="qnZ-yl-GWU">
                                         <rect key="frame" x="0.0" y="0.0" width="55" height="122"/>
@@ -148,7 +148,7 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LeO-db-C6E">
-                                <rect key="frame" x="16" y="32" width="288" height="124"/>
+                                <rect key="frame" x="16" y="32" width="288" height="64"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9MB-jE-Rtt">
@@ -169,7 +169,7 @@
                         <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="9MB-jE-Rtt" secondAttribute="bottom" constant="60" id="3aa-9E-fjV"/>
-                            <constraint firstItem="9MB-jE-Rtt" firstAttribute="top" secondItem="ICw-KP-Cvd" secondAttribute="bottom" constant="150" id="9pT-eV-0ea"/>
+                            <constraint firstItem="9MB-jE-Rtt" firstAttribute="top" secondItem="ICw-KP-Cvd" secondAttribute="bottom" constant="210" id="9pT-eV-0ea"/>
                             <constraint firstItem="ICw-KP-Cvd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="DrT-ys-HVf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ICw-KP-Cvd" secondAttribute="trailing" constant="16" id="EJU-Ck-6cU"/>
                             <constraint firstItem="9MB-jE-Rtt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LTG-el-t6X"/>
