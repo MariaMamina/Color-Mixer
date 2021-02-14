@@ -77,7 +77,6 @@ class SettingViewController: UIViewController {
         delegate.setNewColorValues(redColor: redSlider.value, greenColor: greenSlider.value, blueColor: blueSlider.value)
         
         dismiss(animated: true)
-        
     }
     
     private func setColor(){
@@ -85,7 +84,6 @@ class SettingViewController: UIViewController {
                                             green: CGFloat(greenSlider.value),
                                             blue: CGFloat(blueSlider.value),
                                             alpha: 1)
-        
     }
     
     private func stringValue(from slider: UISlider) -> String {
@@ -106,22 +104,6 @@ class SettingViewController: UIViewController {
             }
         }
     }
-    
-    private func setupToolbar(){
-        let bar = UIToolbar()
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissMyKeyboard))
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        
-        bar.items = [flexSpace, flexSpace, doneButton]
-        bar.sizeToFit()
-        
-        redTextField.inputAccessoryView = bar
-        greenTextField.inputAccessoryView = bar
-        blueTextField.inputAccessoryView = bar
-    }
-    @objc func dismissMyKeyboard(){
-            view.endEditing(true)
-        }
     
     private func setValueTextField(for textField:UITextField...){
         textField.forEach {textField in
@@ -151,7 +133,7 @@ extension UIColor {
         return (red, green, blue, alpha)
     }
 }
-
+// MARK: - Work with keyboard
 extension SettingViewController: UITextFieldDelegate{
     override func touchesBegan(_ touches: Set<UITouch>,
                                with event: UIEvent?) {
@@ -186,14 +168,32 @@ extension SettingViewController: UITextFieldDelegate{
         }
         setColor()
     }
-    
+}
+
+extension SettingViewController {
+    private func setupToolbar(){
+        let bar = UIToolbar()
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissMyKeyboard))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        bar.items = [flexSpace, flexSpace, doneButton]
+        bar.sizeToFit()
+        
+        redTextField.inputAccessoryView = bar
+        greenTextField.inputAccessoryView = bar
+        blueTextField.inputAccessoryView = bar
+    }
+    @objc func dismissMyKeyboard(){
+        view.endEditing(true)
+    }
+}
+
+// MARK: - Alert Controller
+extension SettingViewController {
     private func showAlert(with title: String, and message: String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAlert = UIAlertAction(title: "OK", style: .default)
         alert.addAction(okAlert)
         present(alert, animated: true)
     }
-    
-    
 }
-
